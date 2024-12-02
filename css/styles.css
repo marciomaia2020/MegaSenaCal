@@ -1,0 +1,174 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    color: #388E3C;
+}
+h1 {
+    text-align: center;
+    color: #388E3C; 
+    font-size: 2em;
+}
+/* Estilo dos rótulos e campos de entrada */
+label {
+    display: block;
+    font-weight: normal;
+    margin-top: 10px;
+    color: #A55592; /* Verde médio */
+}
+
+input, select {
+    margin-top: 5px;
+    font-size: 1em;
+    padding: 5px;
+    border-radius: 4px;
+    width: 100%;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Estilo do botão */
+button {
+    padding: 10px;
+    font-size: 16px;
+    color: #A55592;
+}
+
+/* Estilo da linha horizontal */
+hr {
+    border: 1px solid #ccc;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.result {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+/* Estilo para a mensagem de erro */
+.error-message {
+    color: red;
+    font-size: 12px;
+}
+
+/* Estilo da tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+table th.formated-textqnj{
+    color: rgb(0, 0, 0); /* Quantidade de Dezenas: (Quantidade de Nº. Jogados  */
+
+}
+table th.formated-textqj{
+    color: rgb(38, 0, 254); /* Quantidade de Jogos: */
+
+}
+label.formated-textqnj {
+    color: rgb(0, 0, 0) /* Quantidade de Dezenas: (Quantidade de Nº. Jogados  */
+}
+label.formated-textqj {
+    color: rgb(38, 0, 245) /* Quantidade de Jogos: */
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+   color: #A9CF46;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+/* Estiliza as tabelas */
+table {
+    border-collapse: collapse; /* Remove espaçamento entre as bordas das células */
+    width: 100%; /* Faz a tabela ocupar toda a largura disponível */
+}
+table th.formated-textqnj{
+    color: rgb(0, 0, 0); /* Quantidade de Dezenas: (Quantidade de Nº. Jogados  */
+
+}
+table th.formated-textqj{
+    color: rgb(38, 0, 254); /* Quantidade de Jogos: */
+
+}
+label.formated-textqnj {
+    color: rgb(0, 0, 0) /* Quantidade de Dezenas: (Quantidade de Nº. Jogados  */
+}
+label.formated-textqj {
+    color: rgb(38, 0, 245) /* Quantidade de Jogos: */
+}
+
+th, td {
+    border: 1px solid #ddd; /* Define a borda das células */
+    padding: 8px; /* Adiciona preenchimento às células */
+    text-align: center; /* Centraliza o texto nas células */
+}
+
+thead {
+    background-color: #f4f4f4; /* Define uma cor de fundo para o cabeçalho */
+}
+
+
+
+/* Adiciona uma barra de rolagem horizontal às tabelas se necessário */
+.table-container {
+    overflow-x: auto; /* Adiciona a rolagem horizontal */
+    -webkit-overflow-scrolling: touch; /* Permite rolagem suave em dispositivos móveis */
+}
+thead {
+    background-color: #f4f4f4; /* Define uma cor de fundo para o cabeçalho */
+}
+
+
+/* Estilos para dispositivos móveis */
+@media (max-width: 768px) { /* Ajuste o valor conforme necessário */
+    body {
+        text-align: center; /* Centraliza o texto em todo o corpo do site */
+    }
+
+    .container {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box; /* Inclui o padding na largura total */
+    }
+
+    table {
+        margin: 0 auto; /* Centraliza a tabela horizontalmente */
+        width: auto; /* Ajusta a largura da tabela para se ajustar ao conteúdo */
+    }
+    
+    .table-container {
+        margin: 0 auto; /* Centraliza a div da tabela horizontalmente */
+    }
+
+    label, input, button, .result, .error-message {
+        display: block;
+        margin: 10px auto; /* Centraliza elementos blocos horizontalmente com margem automática */
+    }
+    input {
+        padding: 8px;
+        margin-bottom: 20px;
+        width: 100%;
+        max-width: 300px; /* Define uma largura máxima para o input */
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
