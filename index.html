@@ -1,231 +1,206 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Jogos</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Cálculo de Bolão Mega-Sena</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f8ff;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .field-group {
+            margin-bottom: 15px;
+        }
+        .field-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .field-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fafafa;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #e0f7fa;
+            color: #00796b;
+        }
+        td {
+            background-color: #f1f8e9;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        .total-row {
+            font-weight: bold;
+            background-color: #c8e6c9;
+        }
+        .highlight {
+            color: #d32f2f;
+        }
+        .comissao {
+            font-weight: bold;
+            color: #00796b;
+        }
+        h2{
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <h1>Calculadora de Jogos - MEGA SENA</h1>
-
-    <label for="valorAposta">Valor da Aposta Simples:</label>
-    <input type="number" id="valorAposta" min="0.01" step="0.01" value="5.00">
-    <div id="error-valorAposta" class="error-message"></div>
-
-    <label for="dezenas" class="formated-textqnj"><b>Quantidade de Nº. Jogados</b></label>
-    <input type="number" id="dezenas" min="6" max="20" step="1" value="6">
-    <div id="error-dezenas" class="error-message"></div>
-
-    <label for="quantidadeJogos" class="formated-textqj"><b>Quantidade de Jogos</b>:</label>
-    <input type="number" id="quantidadeJogos" min="1" value="1">
-    <div id="error-quantidadeJogos" class="error-message"></div>
-
-    <label for="cotas">Número de Cotas/Pessoas:</label>
-    <input type="number" id="cotas" min="1" value="1">
-    <div id="error-cotas" class="error-message"></div><br />
-
-
-    <label for="teimosinha">Quantidade de Concursos (*Teimosinha*):</label>
-        <select id="teimosinha">
-            <option value="0">Sem Teimosinha</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="6">6</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="12">12</option>
-        </select>
-        
-    <div id="error-teimosinha" class="error-message"></div>
-
-
-
-
-
-
-
-    <button onclick="calcularTeimosinha()">Calcular Teimosinha</button>
-    <button onclick="calcularCustoMegaSena()">Calcular Custo</button>    
-    
-    <hr />
-
-    <div class="result" id="resultado"></div>
-
-    <div class="table-container">  
-        <!-- Tabela Adicionada -->
-        <table border="1">
-            <thead>
-                <tr>
-                    <th class="formated-textqnj">Quantidade de Nº. Jogados</th>
-                    <th class="formated-textqj">Quantidade de Jogos (Apostas)</th>
-                    <th>Qtd mínima de cotas para Bolão</th>
-                    <th>Qtd máxima de cotas para Bolão</th>
-                    <th>Valor Mínimo da Cota</th>
-                    <th>Valor Mínimo do Bolão</th>
-                    <th>Valor Máximo do Bolão</th>
-                    <th>Qtd máxima de jogos no recibo</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>6</td>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>8</td>
-                    <td>R$6,00</td>
-                    <td>R$15,00</td>
-                    <td>R$50,00</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>7</td>
-                    <td>2</td>
-                    <td>50</td>
-                    <td>R$7,00</td>
-                    <td>R$35,00</td>
-                    <td>R$350,00</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>28</td>
-                    <td>2</td>
-                    <td>100</td>
-                    <td>R$7,00</td>
-                    <td>R$140,00</td>
-                    <td>R$1.400,00</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td>84</td>
-                    <td>2</td>
-                    <td>100</td>
-                    <td>R$7,00</td>
-                    <td>R$420,00</td>
-                    <td>R$4.200,00</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td>210</td>
-                    <td>2</td>
-                    <td>100</td>
-                    <td>R$10,50</td>
-                    <td>R$1.050,00</td>
-                    <td>R$10.500,00</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <td>11</td>
-                    <td>462</td>
-                    <td>2</td>
-                    <td>100</td>
-                    <td>R$23,10</td>
-                    <td>R$2.310,00</td>
-                    <td>R$23.100,00</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <td>12</td>
-                    <td>924</td>
-                    <td>2</td>
-                    <td>100</td>
-                    <td>R$46,20</td>
-                    <td>R$4.620,00</td>
-                    <td>R$46.200,00</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <td>13</td>
-                    <td>1.716</td>
-                    <td>2</td>
-                    <td>100</td>
-                    <td>R$85,80</td>
-                    <td>R$8.580,00</td>
-                    <td>R$85.800,00</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <td>14</td>
-                    <td>3.003</td>
-                    <td>2</td>
-                    <td>100</td>
-                    <td>R$150,15</td>
-                    <td>R$15.015,00</td>
-                    <td>R$150.150,00</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <td>15</td>
-                    <td>5.005</td>
-                    <td>2</td>
-                    <td>100</td>
-                    <td>R$250,25</td>
-                    <td>R$25.025,00</td>
-                    <td>R$175.175,00</td>
-                    <td>7</td>
-                </tr>
-                <tr>
-                    <td>16</td>
-                    <td>8.008</td>
-                    <td>2</td>
-                    <td>100</td>
-                    <td>R$400,40</td>
-                    <td>R$40.040,00</td>
-                    <td>R$160.160,00</td>
-                    <td>4</td>
-                </tr>
-                <tr>
-                    <td>17</td>
-                    <td>12.376</td>
-                    <td>2</td>
-                    <td>100</td>
-                    <td>R$618,80</td>
-                    <td>R$61.880,00</td>
-                    <td>R$185.640,00</td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td>18</td>
-                    <td>18.564</td>
-                    <td>2</td>
-                    <td>100</td>
-                    <td>R$928,20</td>
-                    <td>R$92.820,00</td>
-                    <td>R$185.640,00</td>
-                    <td>2</td>
-                </tr>
-                <tr>
-                    <td>19</td>
-                    <td>27.132</td>
-                    <td>2</td>
-                    <td>100</td>
-                    <td>R$1.356,60</td>
-                    <td>R$135.660,00</td>
-                    <td>R$135.660,00</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>20</td>
-                    <td>38.760</td>
-                    <td>2</td>
-                    <td>100</td>
-                    <td>R$1.938,00</td>
-                    <td>R$193.800,00</td>
-                    <td>R$193.800,00</td>
-                    <td>1</td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="container">
+        <h2>Cálculo do Custo de um Bolão Mega-Sena</h1>
+        <form id="formBolao">
+            <div class="field-group">
+                <label for="valorAposta">Valor da Aposta Simples (R$):</label>
+                <input type="number" id="valorAposta" step="0.01">
+                <div class="error" id="error-valorAposta"></div>
+            </div>
+            <div class="field-group">
+                <label for="dezenas">Quantidade de Dezenas (6 a 20):</label>
+                <input type="number" id="dezenas" min="6" max="20">
+                <div class="error" id="error-dezenas"></div>
+            </div>
+            <div class="field-group">
+                <label for="quantidadeJogos">Quantidade de Jogos:</label>
+                <input type="number" id="quantidadeJogos" min="1">
+                <div class="error" id="error-quantidadeJogos"></div>
+            </div>
+            <div class="field-group">
+                <label for="cotas">Quantidade de Cotas:</label>
+                <input type="number" id="cotas" min="1">
+                <div class="error" id="error-cotas"></div>
+            </div>
+            <div class="field-group">
+                <label for="teimosinha">Teimosinha (Concursos Consecutivos):</label>
+                <input type="number" id="teimosinha" min="1">
+                <div class="error" id="error-teimosinha"></div>
+            </div>
+            <div class="field-group">
+                <label for="comissao">Comissão (%):</label>
+                <input type="number" id="comissao" min="35" step="0.01" value="35">
+                <div class="error" id="error-comissao"></div>
+            </div>
+            <button type="button" onclick="calcularCustoMegaSena()">Calcular</button>
+        </form>
+        <div id="resultado"></div>
     </div>
-    
 
+    <script>
+        function calcularCustoMegaSena() {
+            const valorAposta = parseFloat(document.getElementById('valorAposta').value);
+            const dezenas = parseInt(document.getElementById('dezenas').value, 10);
+            const quantidadeJogos = parseInt(document.getElementById('quantidadeJogos').value, 10);
+            const cotas = parseInt(document.getElementById('cotas').value, 10);
+            const teimosinha = parseInt(document.getElementById('teimosinha').value, 10) || 1;
+            const comissao = parseFloat(document.getElementById('comissao').value) / 100;
 
+            // Limpar mensagens de erro
+            document.querySelectorAll('.error').forEach(el => el.innerText = '');
 
-    <script src="js/script.js"></script>
+            let valido = true;
+
+            if (isNaN(valorAposta) || valorAposta <= 0) {
+                document.getElementById('error-valorAposta').innerText = 'Informe um valor válido.';
+                valido = false;
+            }
+            if (![6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].includes(dezenas)) {
+                document.getElementById('error-dezenas').innerText = 'Apenas dezenas entre 6 e 20 são permitidas.';
+                valido = false;
+            }
+            if (isNaN(quantidadeJogos) || quantidadeJogos <= 0) {
+                document.getElementById('error-quantidadeJogos').innerText = 'Informe uma quantidade válida de jogos.';
+                valido = false;
+            }
+            if (isNaN(cotas) || cotas <= 0) {
+                document.getElementById('error-cotas').innerText = 'Informe uma quantidade válida de cotas.';
+                valido = false;
+            }
+
+            if (!valido) return;
+
+            const precosBase = {
+                6: valorAposta, 7: valorAposta * 7, 8: valorAposta * 28, 9: valorAposta * 84,
+                10: valorAposta * 210, 11: valorAposta * 462, 12: valorAposta * 924, 13: valorAposta * 1716,
+                14: valorAposta * 3003, 15: valorAposta * 5005, 16: valorAposta * 8008,
+                17: valorAposta * 12376, 18: valorAposta * 18564, 19: valorAposta * 27132, 20: valorAposta * 38760
+            };
+
+            const custoSemTeimosinha = precosBase[dezenas] * quantidadeJogos;
+            const custoTotal = custoSemTeimosinha * teimosinha;
+            const custoComComissao = custoTotal * (1 + comissao);
+            const custoAcrescimoComissao = custoComComissao - custoTotal; // Valor acrescido pela comissão
+            const custoPorCota = custoComComissao / cotas;
+
+            document.getElementById('resultado').innerHTML = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Descrição</th>
+                            <th>Valor (R$)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Quantidade de Jogos</td>
+                            <td><strong>${quantidadeJogos}</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Custo Total sem Comissão</td>
+                            <td>R$ ${custoTotal.toFixed(2)}</td>
+                        </tr>
+                        <tr>
+                            <td>Custo Total com Comissão</td>
+                            <td>R$ ${custoComComissao.toFixed(2)}</td>
+                        </tr>
+                        <tr>
+                            <td class="highlight">Valor Acrescido pela Comissão</td>
+                            <td class="highlight">R$ ${custoAcrescimoComissao.toFixed(2)}</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td>Custo por Cota com Comissão</td>
+                            <td>R$ ${custoPorCota.toFixed(2)}</td>
+                        </tr>
+                        <tr>
+                            <td>Teimosinha</td>
+                            <td><strong>${teimosinha}</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="comissao">Comissão</td>
+                            <td class="comissao"><strong>${(comissao * 100).toFixed(2)}%</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            `;
+        }
+    </script>
 </body>
 </html>
